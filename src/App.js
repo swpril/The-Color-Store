@@ -5,7 +5,7 @@ import seedColors from './seedColors';
 const App = () => {
   return (
     <div className="App">
-      <Pallete {...seedColors} />
+      <Pallete {...seedColors[6]} />
     </div>
   );
 }
