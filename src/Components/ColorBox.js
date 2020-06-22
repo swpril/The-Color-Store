@@ -11,23 +11,23 @@ const ColorBox = ({ background, name }) => {
         }, 1500);
     }
     return (
-        <CopyToClipboard text={background} onCopy={handleCopy}>
-            <div className='colorBox' style={{ background }}>
-                <div style={{ background }} className={`copy-overlay ${isCopied && 'show'}`} />
-                <div className={`copy-msg ${isCopied && 'show'}`}>
-                    <h1>COPIED</h1>
-                    <p>{background}</p>
-                </div>
-                <div className='copy-container'>
-                    <div className='box-content'>
-                        <span>{name}</span>
-                    </div>
-                    <button className='copy-button' onClick={handleCopy}>Copy </button>
-                </div>
-                <span className='more'>More</span>
-            </div>
-        </CopyToClipboard>
 
+        <div className='colorBox' style={{ background }}>
+            <div className='copy-container'>
+                <div className='box-content'>
+                    <span>{name}</span>
+                </div>
+                <CopyToClipboard text={background} onCopy={handleCopy}>
+                    <button className='copy-button' >Copy </button>
+                </CopyToClipboard>
+            </div>
+            <div style={{ background }} className={`copy-overlay ${isCopied && 'show'}`} />
+            <div className={`copy-msg ${isCopied && 'show'}`}>
+                <h1>COPIED</h1>
+                <p>{background}</p>
+            </div>
+            <span className='more'>More</span>
+        </div>
     )
 };
 
