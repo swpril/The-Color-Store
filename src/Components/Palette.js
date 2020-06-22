@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Slider, { Range } from 'rc-slider';
+import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css'
 import ColorBox from './ColorBox';
 
@@ -15,7 +15,9 @@ const Palette = (props) => {
     }
     return (
         <div className='palette'>
-            <Slider defaultValue={level} min={100} max={900} onAfterChange={handleChange} step={100} />
+            <div className='slider'>
+                <Slider defaultValue={level} min={100} max={900} onAfterChange={handleChange} step={100} />
+            </div>
             <div className='palette-colors '>
                 {colorBox}
             </div>
