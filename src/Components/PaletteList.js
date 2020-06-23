@@ -6,7 +6,7 @@ import MiniPalette from './MiniPalette';
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: 'blue',
-        height: '100%',
+        height: '100vh',
         display: 'flex',
         alignItems: 'flex-start ',
         justifyContent: 'center '
@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'flex-start',
         flexDirection: 'column',
         flexWrap: 'wrap',
-        border: '1px solid black'
     },
     nav: {
         display: 'flex',
