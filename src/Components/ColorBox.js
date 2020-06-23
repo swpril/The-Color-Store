@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import '../Styles/ColorBox.css';
 
-const ColorBox = ({ background, name }) => {
+const ColorBox = ({ background, name, paletteId, id }) => {
     const [isCopied, setIsCopied] = useState(false);
     const handleCopy = async () => {
         await setIsCopied(true);
@@ -27,7 +27,7 @@ const ColorBox = ({ background, name }) => {
                 <h1>COPIED</h1>
                 <p>{background}</p>
             </div>
-            <Link to='/'> <span className='more'>More</span></Link>
+            <Link to={`/palette/${paletteId}/${id}`}> <span className='more'>More</span></Link>
 
         </div>
     )
