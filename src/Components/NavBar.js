@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Slider from 'rc-slider';
+import { Link } from 'react-router-dom';
 import { Select, MenuItem, Snackbar, IconButton } from '@material-ui/core';
 import { Close as CloseIcon } from '@material-ui/icons';
 import 'rc-slider/assets/index.css'
@@ -19,7 +20,7 @@ const NavBar = ({ level, handleChange, handleSelect }) => {
     return (
         <header className='Navbar'>
             <div className='logo'>
-                <a href='#'>The Color Store</a>
+                <Link to='/'>The Color Store</Link>
             </div>
             <div className='slider-container'>
                 <span>Level : {level}</span>
