@@ -19,6 +19,7 @@ const Palette = (props) => {
             name={color.name}
             id={color.id}
             paletteId={props.palette.id}
+            showLink={true}
         />
     ))
     return (
