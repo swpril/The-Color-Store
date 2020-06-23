@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import '../Styles/ColorBox.css';
 
@@ -26,7 +27,8 @@ const ColorBox = ({ background, name }) => {
                 <h1>COPIED</h1>
                 <p>{background}</p>
             </div>
-            <span className='more'>More</span>
+            <Link to='/'> <span className='more'>More</span></Link>
+
         </div>
     )
 };
