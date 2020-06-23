@@ -13,7 +13,7 @@ const Palette = (props) => {
         setFormat(e);
     }
     const colorBox = props.palette.colors[level].map((color) => (
-        <ColorBox background={color[format]} key={color.name} name={color.name} />
+        <ColorBox background={color[format]} key={color.id} name={color.name} />
     ))
     return (
         <div className='palette'>
@@ -21,7 +21,10 @@ const Palette = (props) => {
             <div className='palette-colors '>
                 {colorBox}
             </div>
-
+            <footer className='footer'>
+                {props.palette.paletteName}
+                <span className='emoji'>{props.palette.emoji}</span>
+            </footer>
         </div>
     )
 }
