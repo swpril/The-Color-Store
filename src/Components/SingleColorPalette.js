@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import ColorBox from './ColorBox';
-import "../Styles/Palette.css";
+import Navbar from './NavBar'
+import PaletteFooter from './PaletteFooter';
+import { useHistory } from 'react-router-dom';
 const SingleColorPalette = (props) => {
+    const history = useHistory();
+    const [format, setFormat] = useState('hexValue');
+    const handleSelect = (e) => {
+        setFormat(e);
+    }
+
     const gatherShades = (palette, colorID) => {
         let shades = [];
         let allColors = palette.colors;
@@ -11,20 +19,30 @@ const SingleColorPalette = (props) => {
         return shades.slice(1);
     }
     const [_shades, setShades] = useState(gatherShades(props.palette, props.colorID));
-    console.log(_shades)
     const colorBoxes = _shades.map((color) =>
         < ColorBox
-            key={color.id}
+            key={color.hexValue}
             name={color.name}
-            background={color.hexValue}
+            background={color[format]}
             showLink={false} />
     )
+    const handleBack = () => {
+        history.goBack();
+    }
     return (
-        <div className='palette'>
-            <div className='palette-colors '>
-                {colorBoxes}
+        <div>
+            <div className='single-color-palette palette'>
+                <Navbar handleSelect={handleSelect} showingAll={false} />
+                <div className='palette-colors '>
+                    {colorBoxes}
+                    <div className='colorBox go-back' >
+                        < button className='back-button' onClick={handleBack}>Go Back</button>
+                    </div>
+                </div>
             </div>
+            <PaletteFooter name={props.palette.paletteName} emoji={props.palette.emoji} />
         </div>
+
     )
 }
 
