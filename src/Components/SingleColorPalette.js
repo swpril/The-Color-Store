@@ -24,7 +24,7 @@ const SingleColorPalette = (props) => {
             key={color.hexValue}
             name={color.name}
             background={color[format]}
-            showLink={false} />
+            showingFullPalette={false} />
     )
     const handleBack = () => {
         history.goBack();
