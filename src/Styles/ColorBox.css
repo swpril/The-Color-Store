@@ -53,6 +53,14 @@
 	font-size: 12px;
 }
 
+.light-text {
+	color: white;
+}
+
+.colorBox .dark-text {
+	color: black !important ;
+}
+
 .more {
 	background: rgba(255, 255, 255, 0.3);
 	position: absolute;
