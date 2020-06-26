@@ -19,7 +19,12 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         width: '100%',
         justifyContent: 'space-between',
-        color: 'white'
+        color: 'white',
+        alignItems: 'center'
+    },
+    link: {
+        color: 'white',
+        textDecoration: 'none'
     },
     palettes: {
         boxSizing: 'border-box',
