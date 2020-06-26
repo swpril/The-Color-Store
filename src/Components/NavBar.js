@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import { Select, MenuItem, Snackbar, IconButton } from '@material-ui/core';
 import { Close as CloseIcon } from '@material-ui/icons';
 import 'rc-slider/assets/index.css'
-import '../Styles/Navbar.css';
+import useStyles from '../Styles/NavBar';
 
 const NavBar = ({ level, handleChange, handleSelect, showingAll }) => {
+    const classes = useStyles();
     const [format, setFormat] = useState('hex');
     const [open, setOpen] = useState(false)
     const handleFormat = (e) => {
@@ -18,18 +19,18 @@ const NavBar = ({ level, handleChange, handleSelect, showingAll }) => {
         setOpen(false);
     }
     return (
-        <header className='Navbar'>
-            <div className='logo'>
+        <header className={classes.Navbar}>
+            <div className={classes.logo}>
                 <Link to='/'>The Color Store</Link>
             </div>
             {showingAll && (<div className='slider-container'>
                 <span>Level : {level}</span>
-                <div className='slider'>
+                <div className={classes.slider}>
                     <Slider defaultValue={level} min={100} max={900} onAfterChange={handleChange} step={100} />
                 </div>
             </div>)}
 
-            <div className='select-container'>
+            <div className={classes.selectContainer}>
                 <Select value={format} onChange={handleFormat}>
                     <MenuItem value='hex'> HEX- #FFFFFF
                     </MenuItem>
@@ -45,7 +46,7 @@ const NavBar = ({ level, handleChange, handleSelect, showingAll }) => {
                 autoHideDuration={2000}
                 message={<span id='message-id'>Format Changed to {format.toUpperCase()}</span>}
                 ContentProps={{
-                    "aria-describedby": "message-id"
+                    'aria-describedby': 'message-id'
                 }}
                 onClose={handleOpen}
                 action={[<IconButton onClick={handleOpen} color='inherit' key='close' aria-label='close'>
