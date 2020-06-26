@@ -19,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
             textDecoration: 'none',
             color: 'black',
             fontFamily: 'Roboto Mono',
-            fontSize: theme.spacing(2)
+            fontSize: theme.spacing(2),
+            fontWeight: 'bold'
         }
     },
     appBarShift: {
