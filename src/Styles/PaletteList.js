@@ -8,7 +8,6 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'flex-start ',
         justifyContent: 'center ',
         overflowY: 'scroll',
-        border: '2px solid red'
     },
     container: {
         width: '50%',

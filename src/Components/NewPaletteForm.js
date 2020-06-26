@@ -15,12 +15,13 @@ import DraggableColorBox from './DraggableColorBox';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import useStyles from '../Styles/NewPaletteForm';
 
-const NewPaletteFrom = ({ savePalette }) => {
+const NewPaletteFrom = ({ savePalette, palettes }) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [currentColor, setCurrenColor] = useState('teal');
     const [colors, setColors] = useState([]);
-    const [newName, setNewName] = useState('');
+    const [newPaletteName, setNewPaletteName] = useState('');
+    const [newColorName, setNewColorName] = useState('');
     const history = useHistory();
     const updateColor = (newColor) => {
         setCurrenColor(newColor.hex);
@@ -36,17 +37,21 @@ const NewPaletteFrom = ({ savePalette }) => {
     const addColor = () => {
         const newColor = {
             color: currentColor,
-            name: newName
+            name: newColorName
         }
         setColors([...colors, newColor])
-        setNewName('');
+        setNewColorName('');
     };
 
     const handleChange = (e) => {
-        setNewName(e.target.value);
+        setNewColorName(e.target.value);
     };
+
+    const handlePaletteName = (e) => {
+        setNewPaletteName(e.target.value)
+    }
     const saveNewPalette = () => {
-        const name = 'new name';
+        const name = newPaletteName;
         const newPalette = {
             colors: colors,
             paletteName: name,
@@ -62,7 +67,10 @@ const NewPaletteFrom = ({ savePalette }) => {
         });
         ValidatorForm.addValidationRule('isColorUnique', (value) => {
             return (colors.every(({ color }) => color !== currentColor));
-        })
+        });
+        ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
+            return (palettes.every(({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()));
+        });
     }, [colors, currentColor])
 
     return (
@@ -87,9 +95,19 @@ const NewPaletteFrom = ({ savePalette }) => {
                     <Link to='/'>
                         Create A Palette
                     </Link>
-                    <Button variant='contained' onClick={saveNewPalette}>
-                        Save Palette
+                    <ValidatorForm onSubmit={saveNewPalette}>
+                        <TextValidator
+                            label='Palette Name'
+                            value={newPaletteName}
+                            name='newPaletteName'
+                            onChange={handlePaletteName}
+                            validators={['required', 'isPaletteNameUnique']}
+                            errorMessages={['This fie ld cannot be empty', 'Palette name must be unique']}
+                        />
+                        <Button variant='contained' type='submit'>
+                            Save Palette
                     </Button>
+                    </ValidatorForm>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -116,7 +134,8 @@ const NewPaletteFrom = ({ savePalette }) => {
                 <ChromePicker color={currentColor} onChangeComplete={updateColor} />
                 <ValidatorForm onSubmit={addColor}>
                     <TextValidator
-                        value={newName}
+                        value={newColorName}
+                        name='newColorName'
                         onChange={handleChange}
                         validators={['required', 'isColorNameUnique', 'isColorUnique']}
                         errorMessages={['This field is required', 'Color name must be unique', 'Color already exists ']}

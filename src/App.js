@@ -19,7 +19,7 @@ const App = () => {
   return (
     <div>
       <Switch>
-        <Route exact path='/palette/new' render={() => <NewPaletteForm savePalette={savePalette} />} />
+        <Route exact path='/palette/new' render={() => <NewPaletteForm savePalette={savePalette} palettes={palettes} />} />
         <Route
           exact
           path='/'
