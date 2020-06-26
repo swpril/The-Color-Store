@@ -1,10 +1,12 @@
 import React from 'react';
-import '../Styles/Palette.css'
+import useStyles from '../Styles/PaletteFooter';
+
 const PaletteFooter = ({ name, emoji }) => {
+    const classes = useStyles();
     return (
-        <footer className='footer'>
+        <footer className={classes.footer}>
             {name}
-            <span className='emoji'>{emoji}</span>
+            <span className={classes.emoji}>{emoji}</span>
         </footer>
     );
 }

@@ -1,37 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core';
 import MiniPalette from './MiniPalette';
+import useStyles from '../Styles/PaletteList';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        backgroundColor: 'blue',
-        height: '100vh',
-        display: 'flex',
-        alignItems: 'flex-start ',
-        justifyContent: 'center '
-    },
-    container: {
-        width: '50%',
-        display: 'flex',
-        alignItems: 'flex-start',
-        flexDirection: 'column',
-        flexWrap: 'wrap',
-    },
-    nav: {
-        display: 'flex',
-        width: '100%',
-        justifyContent: 'space-between',
-        color: 'white'
-    },
-    palettes: {
-        boxSizing: 'border-box',
-        width: '100%',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3,30%)',
-        gridGap: '5%'
-    }
-}))
 const PaletteList = (props) => {
     const history = useHistory();
     const classes = useStyles();

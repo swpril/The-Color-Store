@@ -1,32 +1,8 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core';
 import ColorBox from './ColorBox';
-import '../Styles/Palette.css';
 import NavBar from './NavBar';
 import PaletteFooter from './PaletteFooter';
-
-const useStyles = makeStyles((theme) => ({
-    palette: {
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    paletteColors: {
-        height: '90%'
-    },
-    footer: {
-        backgroundColor: 'white',
-        height: '4vh',
-        display: 'flex',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        fontWeight: 'bold',
-    },
-    emoji: {
-        fontSize: '1rem',
-        margin: '0 1rem'
-    }
-}))
+import useStyles from '../Styles/Palette';
 
 const Palette = (props) => {
     const classes = useStyles();
