@@ -10,16 +10,18 @@ import {
     Add as AddIcon, ChevronLeft as ChevronLeftIcon
 } from '@material-ui/icons';
 import { ChromePicker } from 'react-color';
+import { useHistory } from 'react-router-dom';
 import DraggableColorBox from './DraggableColorBox';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import useStyles from '../Styles/NewPaletteForm';
 
-const NewPaletteFrom = () => {
+const NewPaletteFrom = ({ savePalette }) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [currentColor, setCurrenColor] = useState('teal');
     const [colors, setColors] = useState([]);
     const [newName, setNewName] = useState('');
+    const history = useHistory();
     const updateColor = (newColor) => {
         setCurrenColor(newColor.hex);
     };
@@ -43,7 +45,17 @@ const NewPaletteFrom = () => {
     const handleChange = (e) => {
         setNewName(e.target.value);
     };
-
+    const saveNewPalette = () => {
+        const name = 'new name';
+        const newPalette = {
+            colors: colors,
+            paletteName: name,
+            id: name.toLowerCase().replace(/ /g, '-'),
+            emoji: '😆'
+        }
+        savePalette(newPalette);
+        history.push('/');
+    }
     useEffect(() => {
         ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
             return (colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase()));
@@ -73,8 +85,11 @@ const NewPaletteFrom = () => {
                         <AddIcon className={classes.addIcon} />
                     </IconButton>
                     <Link to='/'>
-                        The Color Store
+                        Create A Palette
                     </Link>
+                    <Button variant='contained' onClick={saveNewPalette}>
+                        Save Palette
+                    </Button>
                 </Toolbar>
             </AppBar>
             <Drawer

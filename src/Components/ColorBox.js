@@ -5,7 +5,6 @@ import useStyles from '../Styles/ColorBox';
 
 const ColorBox = (props) => {
     const classes = useStyles(props);
-    console.log(props.showingFullPalette)
     const [isCopied, setIsCopied] = useState(false);
     const handleCopy = async () => {
         await setIsCopied(true);

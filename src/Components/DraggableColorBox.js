@@ -2,7 +2,6 @@ import React from 'react';
 import useStyles from '../Styles/DraggableColorBox';
 
 const DraggableColorBox = (props) => {
-    console.log(props);
     const classes = useStyles(props);
     return (
         <div className={classes.root}>
