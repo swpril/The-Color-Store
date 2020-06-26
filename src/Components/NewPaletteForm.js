@@ -10,6 +10,7 @@ import {
     Add as AddIcon, ChevronLeft as ChevronLeftIcon
 } from '@material-ui/icons';
 import { ChromePicker } from 'react-color';
+import DraggableColorBox from './DraggableColorBox';
 import useStyles from '../Styles/NewPaletteForm';
 
 const NewPaletteFrom = () => {
@@ -85,8 +86,8 @@ const NewPaletteFrom = () => {
                 })}
             >
                 <div className={classes.drawerHeader} />
-                {colors.map((color) => (
-                    <Typography style={{ color }}>Colors</Typography>
+                {colors.map((color, index) => (
+                    <DraggableColorBox key={index} color={color} />
                 ))}
             </main>
         </div>
