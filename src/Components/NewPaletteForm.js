@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import {
     Drawer, Button,
@@ -14,8 +14,12 @@ import useStyles from '../Styles/NewPaletteForm';
 
 const NewPaletteFrom = () => {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
-
+    const [open, setOpen] = useState(false);
+    const [currentColor, setCurrenColor] = useState('teal');
+    const [colors, setColors] = useState(['red', 'teal', 'green']);
+    const updateColor = (newColor) => {
+        setCurrenColor(newColor.hex);
+    };
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -24,6 +28,9 @@ const NewPaletteFrom = () => {
         setOpen(false);
     };
 
+    const addColor = () => {
+        setColors([...colors, currentColor])
+    };
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -69,8 +76,8 @@ const NewPaletteFrom = () => {
                     <Button variant='contained' color='Primary'>Random Color</Button>
                 </div>
 
-                <ChromePicker color='red' onChangeComplete={(color) => console.log(color)} />
-                <Button variant='contained' color='secondary'>Add Color</Button>
+                <ChromePicker color={currentColor} onChangeComplete={updateColor} />
+                <Button variant='contained' style={{ background: currentColor }} onClick={addColor}>Add Color</Button>
             </Drawer>
             <main
                 className={clsx(classes.content, {
@@ -78,18 +85,9 @@ const NewPaletteFrom = () => {
                 })}
             >
                 <div className={classes.drawerHeader} />
-                <Typography paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                    ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-                    facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-                    gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-                    donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                    adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-                    Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-                    imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-                    arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-                    donec massa sapien faucibus et molestie ac.
-        </Typography>
+                {colors.map((color) => (
+                    <Typography style={{ color }}>Colors</Typography>
+                ))}
             </main>
         </div>
     );
