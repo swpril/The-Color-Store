@@ -1,13 +1,15 @@
 import React from 'react';
 import clsx from 'clsx';
 import {
-    Drawer,
+    Drawer, Button,
     CssBaseline, AppBar, Toolbar,
     Typography, Divider, IconButton
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import {
     Add as AddIcon, ChevronLeft as ChevronLeftIcon
 } from '@material-ui/icons';
+import { ChromePicker } from 'react-color';
 import useStyles from '../Styles/NewPaletteForm';
 
 const NewPaletteFrom = () => {
@@ -39,11 +41,11 @@ const NewPaletteFrom = () => {
                         edge="start"
                         className={clsx(classes.menuButton, open && classes.hide)}
                     >
-                        <AddIcon />
+                        <AddIcon className={classes.addIcon} />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
+                    <Link to='/'>
                         The Color Store
-                    </Typography>
+                    </Link>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -61,7 +63,14 @@ const NewPaletteFrom = () => {
                     </IconButton>
                 </div>
                 <Divider />
-                <Divider />
+                <Typography variant='h5'>Design New Palette </Typography>
+                <div>
+                    <Button variant='contained' color='secondary'>Clear</Button>
+                    <Button variant='contained' color='Primary'>Random Color</Button>
+                </div>
+
+                <ChromePicker color='red' onChangeComplete={(color) => console.log(color)} />
+                <Button variant='contained' color='secondary'>Add Color</Button>
             </Drawer>
             <main
                 className={clsx(classes.content, {

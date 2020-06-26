@@ -1,16 +1,26 @@
 import { makeStyles } from '@material-ui/core';
 
-const drawerWidth = 240;
+const drawerWidth = 350;
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
     },
+    addIcon: {
+        color: 'black'
+    },
     appBar: {
+        backgroundColor: '#ECEFF1',
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
+        '& a': {
+            textDecoration: 'none',
+            color: 'black',
+            fontFamily: 'Roboto Mono',
+            fontSize: theme.spacing(2)
+        }
     },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
