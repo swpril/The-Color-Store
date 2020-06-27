@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PaletteFormNav from './PaletteFormNav';
 import clsx from 'clsx';
 import {
     Drawer, Button,
@@ -10,10 +9,11 @@ import { useHistory } from 'react-router-dom';
 import {
     ChevronLeft as ChevronLeftIcon
 } from '@material-ui/icons';
+import { arrayMove } from 'react-sortable-hoc';
 import DraggableColorList from './DraggableColorList';
 import ColorPickerForm from './ColorPickerForm';
+import PaletteFormNav from './PaletteFormNav';
 import useStyles from '../Styles/NewPaletteForm';
-import { arrayMove } from 'react-sortable-hoc';
 
 const NewPaletteFrom = ({ savePalette, palettes, maxColors = 20 }) => {
     const classes = useStyles();

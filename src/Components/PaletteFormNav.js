@@ -1,26 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import {
     Button, CssBaseline, AppBar, Toolbar, IconButton
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import {
-    Add as AddIcon
-} from '@material-ui/icons';
+import { Add as AddIcon } from '@material-ui/icons';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import useStyles from '../Styles/PaletteFormNav';
+import PaletteModal from './PaletteModal';
 
 const PaletteFormNav = ({ open, palettes, handleDrawerOpen, saveNewPalette }) => {
     const classes = useStyles();
-    const [newPaletteName, setNewPaletteName] = useState('');
-    useEffect(() => {
-        ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
-            return (palettes.every(({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()));
-        });
-    }, [palettes])
-    const handlePaletteName = (e) => {
-        setNewPaletteName(e.target.value)
-    };
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -45,19 +35,11 @@ const PaletteFormNav = ({ open, palettes, handleDrawerOpen, saveNewPalette }) =>
                     </Link>
                 </Toolbar>
                 <div className={classes.navBtns}>
-                    <ValidatorForm onSubmit={() => { saveNewPalette(newPaletteName) }}>
-                        <TextValidator
-                            label='Palette Name'
-                            value={newPaletteName}
-                            name='newPaletteName'
-                            onChange={handlePaletteName}
-                            validators={['required', 'isPaletteNameUnique']}
-                            errorMessages={['This fie ld cannot be empty', 'Palette name must be unique']}
-                        />
-                        <Button variant='contained' type='submit'>
-                            Save Palette
-                        </Button>
-                    </ValidatorForm>
+                    <PaletteModal
+                        palettes={palettes}
+                        saveNewPalette={saveNewPalette}
+                    />
+
                     <Link to='/'>
                         <Button
                             variant='contained'
