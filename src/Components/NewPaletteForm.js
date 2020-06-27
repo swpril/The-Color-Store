@@ -16,11 +16,11 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import useStyles from '../Styles/NewPaletteForm';
 import { arrayMove } from 'react-sortable-hoc';
 
-const NewPaletteFrom = ({ savePalette, palettes }) => {
+const NewPaletteFrom = ({ savePalette, palettes, maxColors = 20 }) => {
     const classes = useStyles();
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
     const [currentColor, setCurrenColor] = useState('teal');
-    const [colors, setColors] = useState([]);
+    const [colors, setColors] = useState(palettes[0].colors);
     const [newPaletteName, setNewPaletteName] = useState('');
     const [newColorName, setNewColorName] = useState('');
     const history = useHistory();
@@ -50,7 +50,12 @@ const NewPaletteFrom = ({ savePalette, palettes }) => {
 
     const handlePaletteName = (e) => {
         setNewPaletteName(e.target.value)
-    }
+    };
+
+    const clearColors = () => {
+        setColors([]);
+    };
+
     const saveNewPalette = () => {
         const name = newPaletteName;
         const newPalette = {
@@ -61,16 +66,24 @@ const NewPaletteFrom = ({ savePalette, palettes }) => {
         }
         savePalette(newPalette);
         history.push('/');
-    }
+    };
+
+    const addRandomColor = () => {
+        const allColors = palettes.map((p) => p.colors).flat();
+        const index = Math.floor(Math.random() * allColors.length);
+        const randomColor = allColors[index];
+        setColors([...colors, randomColor])
+
+    };
 
     const handleClick = (colorName) => {
         const newArray = colors.filter((color) => color.name !== colorName);
         setColors(newArray);
-    }
+    };
 
     const onSortEnd = ({ oldIndex, newIndex }) => {
         setColors(colors => arrayMove(colors, oldIndex, newIndex));
-    }
+    };
     useEffect(() => {
         ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
             return (colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase()));
@@ -137,8 +150,8 @@ const NewPaletteFrom = ({ savePalette, palettes }) => {
                 <Divider />
                 <Typography variant='h5'>Design New Palette </Typography>
                 <div>
-                    <Button variant='contained' color='secondary'>Clear</Button>
-                    <Button variant='contained' color='primary'>Random Color</Button>
+                    <Button variant='contained' color='secondary' onClick={clearColors}>Clear</Button>
+                    <Button variant='contained' color='primary' onClick={addRandomColor}>Random Color</Button>
                 </div>
 
                 <ChromePicker color={currentColor} onChangeComplete={updateColor} />
@@ -152,9 +165,10 @@ const NewPaletteFrom = ({ savePalette, palettes }) => {
                     />
                     <Button
                         variant='contained'
-                        style={{ background: currentColor }}
+                        style={{ background: colors.length === maxColors ? 'grey' : currentColor }}
                         type='submit'
-                    >Add Color</Button>
+                        disabled={colors.length === maxColors}
+                    >{colors.length === maxColors ? 'Palette Full' : 'Add Color'}</Button>
                 </ValidatorForm>
 
             </Drawer>
@@ -174,5 +188,6 @@ const NewPaletteFrom = ({ savePalette, palettes }) => {
         </div>
     );
 }
+
 
 export default NewPaletteFrom;

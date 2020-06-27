@@ -3,7 +3,7 @@ import { SortableContainer } from 'react-sortable-hoc';
 import DraggableColorBox from './DraggableColorBox';
 const DraggableColorList = SortableContainer(({ colors, handleClick }) => {
     return (
-        <div style={{ height: '100% ' }}>
+        <div style={{ height: '100%' }}>
             {
                 colors.map((color, index) => (
                     <DraggableColorBox

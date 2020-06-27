@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         textTransform: 'uppercase',
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     deleteIcon: {
         color: 'black',
