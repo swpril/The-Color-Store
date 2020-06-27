@@ -11,9 +11,10 @@ import {
 } from '@material-ui/icons';
 import { ChromePicker } from 'react-color';
 import { useHistory } from 'react-router-dom';
-import DraggableColorBox from './DraggableColorBox';
+import DraggableColorList from './DraggableColorList';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import useStyles from '../Styles/NewPaletteForm';
+import { arrayMove } from 'react-sortable-hoc';
 
 const NewPaletteFrom = ({ savePalette, palettes }) => {
     const classes = useStyles();
@@ -61,6 +62,15 @@ const NewPaletteFrom = ({ savePalette, palettes }) => {
         savePalette(newPalette);
         history.push('/');
     }
+
+    const handleClick = (colorName) => {
+        const newArray = colors.filter((color) => color.name !== colorName);
+        setColors(newArray);
+    }
+
+    const onSortEnd = ({ oldIndex, newIndex }) => {
+        setColors(colors => arrayMove(colors, oldIndex, newIndex));
+    }
     useEffect(() => {
         ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
             return (colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase()));
@@ -71,7 +81,7 @@ const NewPaletteFrom = ({ savePalette, palettes }) => {
         ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
             return (palettes.every(({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()));
         });
-    }, [colors, currentColor])
+    }, [colors, currentColor, palettes])
 
     return (
         <div className={classes.root}>
@@ -154,9 +164,12 @@ const NewPaletteFrom = ({ savePalette, palettes }) => {
                 })}
             >
                 <div className={classes.drawerHeader} />
-                {colors.map((color, index) => (
-                    <DraggableColorBox key={index} color={color.color} name={color.name} />
-                ))}
+                <DraggableColorList
+                    colors={colors}
+                    handleClick={handleClick}
+                    axis='xy'
+                    onSortEnd={onSortEnd}
+                />
             </main>
         </div>
     );

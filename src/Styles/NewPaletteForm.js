@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         '& a': {
             textDecoration: 'none',
             color: 'black',
-            fontFamily: 'R oboto Mono',
+            fontFamily: 'Roboto Mono',
             fontSize: theme.spacing(2),
             fontWeight: 'bold'
         }

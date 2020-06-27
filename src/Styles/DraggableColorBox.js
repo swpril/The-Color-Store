@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
     },
     deleteIcon: {
         color: 'black',
-        transition: 'all 0.2s ease-in-out'
+        transition: 'all 0.2s ease-in-out',
+        cursor: 'pointer'
     }
 }))
 
