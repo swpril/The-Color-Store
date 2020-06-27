@@ -1,19 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import PaletteFormNav from './PaletteFormNav';
-import clsx from 'clsx';
 import {
-    Drawer, Button,
-    Typography, Divider, IconButton
+    Button, Typography,
 } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
-import {
-    ChevronLeft as ChevronLeftIcon
-} from '@material-ui/icons';
 import { ChromePicker } from 'react-color';
-import DraggableColorList from './DraggableColorList';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import useStyles from '../Styles/NewPaletteForm';
-import { arrayMove } from 'react-sortable-hoc';
 
 const ColorPickerForm = ({ isPaletteFull, colors, addColor }) => {
     const [currentColor, setCurrenColor] = useState('teal');

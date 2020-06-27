@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PaletteFormNav from './PaletteFormNav';
 import clsx from 'clsx';
 import {
     Drawer, Button,
-    Typography, Divider, IconButton
+    Divider, IconButton
 } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import {
     ChevronLeft as ChevronLeftIcon
 } from '@material-ui/icons';
-import { ChromePicker } from 'react-color';
 import DraggableColorList from './DraggableColorList';
 import ColorPickerForm from './ColorPickerForm';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import useStyles from '../Styles/NewPaletteForm';
 import { arrayMove } from 'react-sortable-hoc';
 
@@ -22,7 +20,7 @@ const NewPaletteFrom = ({ savePalette, palettes, maxColors = 20 }) => {
     const [colors, setColors] = useState(palettes[0].colors);
     const history = useHistory();
 
-    const isPaletteFull = maxColors == colors.length;
+    const isPaletteFull = maxColors === colors.length;
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -73,7 +71,6 @@ const NewPaletteFrom = ({ savePalette, palettes, maxColors = 20 }) => {
     return (
         <div className={classes.root}>
             <PaletteFormNav
-                classes={classes}
                 open={open}
                 palettes={palettes}
                 handleDrawerOpen={handleDrawerOpen}

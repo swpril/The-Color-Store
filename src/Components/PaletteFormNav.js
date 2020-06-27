@@ -8,8 +8,10 @@ import {
     Add as AddIcon
 } from '@material-ui/icons';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import useStyles from '../Styles/PaletteFormNav';
 
-const PaletteFormNav = ({ classes, open, palettes, handleDrawerOpen, saveNewPalette }) => {
+const PaletteFormNav = ({ open, palettes, handleDrawerOpen, saveNewPalette }) => {
+    const classes = useStyles();
     const [newPaletteName, setNewPaletteName] = useState('');
     useEffect(() => {
         ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
@@ -20,7 +22,7 @@ const PaletteFormNav = ({ classes, open, palettes, handleDrawerOpen, saveNewPale
         setNewPaletteName(e.target.value)
     };
     return (
-        <div>
+        <div className={classes.root}>
             <CssBaseline />
             <AppBar
                 position="fixed"
@@ -41,6 +43,8 @@ const PaletteFormNav = ({ classes, open, palettes, handleDrawerOpen, saveNewPale
                     <Link to='/'>
                         Create A Palette
                     </Link>
+                </Toolbar>
+                <div className={classes.navBtns}>
                     <ValidatorForm onSubmit={() => { saveNewPalette(newPaletteName) }}>
                         <TextValidator
                             label='Palette Name'
@@ -50,17 +54,17 @@ const PaletteFormNav = ({ classes, open, palettes, handleDrawerOpen, saveNewPale
                             validators={['required', 'isPaletteNameUnique']}
                             errorMessages={['This fie ld cannot be empty', 'Palette name must be unique']}
                         />
-                        <Link to='/'>
-                            <Button
-                                variant='contained'
-                                color='secondary'
-                            >Go Back</Button>
-                        </Link>
                         <Button variant='contained' type='submit'>
                             Save Palette
-                    </Button>
+                        </Button>
                     </ValidatorForm>
-                </Toolbar>
+                    <Link to='/'>
+                        <Button
+                            variant='contained'
+                            color='secondary'
+                        >Go Back</Button>
+                    </Link>
+                </div>
             </AppBar>
         </div>
     );
