@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import PaletteFormNav from './PaletteFormNav';
 import clsx from 'clsx';
 import {
     Drawer, Button,
-    CssBaseline, AppBar, Toolbar,
     Typography, Divider, IconButton
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
-    Add as AddIcon, ChevronLeft as ChevronLeftIcon
+    ChevronLeft as ChevronLeftIcon
 } from '@material-ui/icons';
 import { ChromePicker } from 'react-color';
-import { useHistory } from 'react-router-dom';
 import DraggableColorList from './DraggableColorList';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import useStyles from '../Styles/NewPaletteForm';
@@ -21,7 +20,6 @@ const NewPaletteFrom = ({ savePalette, palettes, maxColors = 20 }) => {
     const [open, setOpen] = useState(true);
     const [currentColor, setCurrenColor] = useState('teal');
     const [colors, setColors] = useState(palettes[0].colors);
-    const [newPaletteName, setNewPaletteName] = useState('');
     const [newColorName, setNewColorName] = useState('');
     const history = useHistory();
     const updateColor = (newColor) => {
@@ -48,15 +46,11 @@ const NewPaletteFrom = ({ savePalette, palettes, maxColors = 20 }) => {
         setNewColorName(e.target.value);
     };
 
-    const handlePaletteName = (e) => {
-        setNewPaletteName(e.target.value)
-    };
-
     const clearColors = () => {
         setColors([]);
     };
 
-    const saveNewPalette = () => {
+    const saveNewPalette = (newPaletteName) => {
         const name = newPaletteName;
         const newPalette = {
             colors: colors,
@@ -91,48 +85,17 @@ const NewPaletteFrom = ({ savePalette, palettes, maxColors = 20 }) => {
         ValidatorForm.addValidationRule('isColorUnique', (value) => {
             return (colors.every(({ color }) => color !== currentColor));
         });
-        ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
-            return (palettes.every(({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()));
-        });
-    }, [colors, currentColor, palettes])
+    }, [colors, currentColor])
 
     return (
         <div className={classes.root}>
-            <CssBaseline />
-            <AppBar
-                position="fixed"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
-                })}
-            >
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        className={clsx(classes.menuButton, open && classes.hide)}
-                    >
-                        <AddIcon className={classes.addIcon} />
-                    </IconButton>
-                    <Link to='/'>
-                        Create A Palette
-                    </Link>
-                    <ValidatorForm onSubmit={saveNewPalette}>
-                        <TextValidator
-                            label='Palette Name'
-                            value={newPaletteName}
-                            name='newPaletteName'
-                            onChange={handlePaletteName}
-                            validators={['required', 'isPaletteNameUnique']}
-                            errorMessages={['This fie ld cannot be empty', 'Palette name must be unique']}
-                        />
-                        <Button variant='contained' type='submit'>
-                            Save Palette
-                    </Button>
-                    </ValidatorForm>
-                </Toolbar>
-            </AppBar>
+            <PaletteFormNav
+                classes={classes}
+                open={open}
+                palettes={palettes}
+                handleDrawerOpen={handleDrawerOpen}
+                saveNewPalette={saveNewPalette}
+            />
             <Drawer
                 className={classes.drawer}
                 variant="persistent"
@@ -150,8 +113,18 @@ const NewPaletteFrom = ({ savePalette, palettes, maxColors = 20 }) => {
                 <Divider />
                 <Typography variant='h5'>Design New Palette </Typography>
                 <div>
-                    <Button variant='contained' color='secondary' onClick={clearColors}>Clear</Button>
-                    <Button variant='contained' color='primary' onClick={addRandomColor}>Random Color</Button>
+                    <Button
+                        variant='contained'
+                        color='secondary'
+                        onClick={clearColors}
+                    >Clear</Button>
+                    <Button
+                        variant='contained'
+                        color='primary'
+                        onClick={addRandomColor}
+                        disabled={colors.length === maxColors}
+                        style={{ background: colors.length === maxColors ? 'grey' : null }}
+                    >Random Color</Button>
                 </div>
 
                 <ChromePicker color={currentColor} onChangeComplete={updateColor} />
