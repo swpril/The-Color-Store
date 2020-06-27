@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core';
-
 const drawerWidth = 350;
 
 const useStyles = makeStyles((theme) => ({
@@ -11,6 +10,10 @@ const useStyles = makeStyles((theme) => ({
         flexShrink: 0,
     },
     drawerPaper: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
         width: drawerWidth,
     },
     drawerHeader: {
@@ -19,6 +22,24 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(0, 1),
         ...theme.mixins.toolbar,
         justifyContent: 'flex-end',
+    },
+    drawerContainer: {
+        width: '90%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    drawerButtons: {
+        width: '100%'
+    },
+    drawerTitle: {
+        fontFamily: 'Roboto Mono'
+    },
+    button: {
+        fontFamily: 'Roboto Mono',
+        width: '50%',
     },
     content: {
         flexGrow: 1,

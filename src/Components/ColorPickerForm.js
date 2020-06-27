@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {
-    Button, Typography,
+    Button,
 } from '@material-ui/core';
 import { ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import useStyles from '../Styles/ColorPickerForm';
 
 const ColorPickerForm = ({ isPaletteFull, colors, addColor }) => {
+    const classes = useStyles();
     const [currentColor, setCurrenColor] = useState('teal');
     const [newColorName, setNewColorName] = useState('');
 
@@ -35,16 +37,15 @@ const ColorPickerForm = ({ isPaletteFull, colors, addColor }) => {
         setNewColorName('');
     }
 
-
     return (
-        <div>
-            <Typography variant='h5'>Design New Palette </Typography>
-
-            <ChromePicker color={currentColor} onChangeComplete={updateColor} />
+        <div className={classes.root}>
+            <ChromePicker color={currentColor} onChangeComplete={updateColor} className={classes.picker} />
             <ValidatorForm onSubmit={handleSubmit}>
                 <TextValidator
                     value={newColorName}
                     name='newColorName'
+                    className={classes.inputText}
+                    placeholder='Color Name'
                     onChange={handleChange}
                     validators={['required', 'isColorNameUnique', 'isColorUnique']}
                     errorMessages={['This field is required', 'Color name must be unique', 'Color already exists ']}
@@ -53,6 +54,7 @@ const ColorPickerForm = ({ isPaletteFull, colors, addColor }) => {
                     variant='contained'
                     style={{ background: isPaletteFull ? 'grey' : currentColor }}
                     type='submit'
+                    className={classes.addColorButton}
                     disabled={isPaletteFull}
                 >{isPaletteFull ? 'Palette Full' : 'Add Color'}</Button>
             </ValidatorForm>

@@ -3,7 +3,8 @@ import PaletteFormNav from './PaletteFormNav';
 import clsx from 'clsx';
 import {
     Drawer, Button,
-    Divider, IconButton
+    Divider, IconButton,
+    Typography
 } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import {
@@ -91,26 +92,30 @@ const NewPaletteFrom = ({ savePalette, palettes, maxColors = 20 }) => {
                     </IconButton>
                 </div>
                 <Divider />
-                <div>
-                    <Button
-                        variant='contained'
-                        color='secondary'
-                        onClick={clearColors}
-                    >Clear</Button>
-                    <Button
-                        variant='contained'
-                        color='primary'
-                        onClick={addRandomColor}
-                        disabled={isPaletteFull}
-                        style={{ background: isPaletteFull ? 'grey' : null }}
-                    >Random Color</Button>
+                <div className={classes.drawerContainer}>
+                    <Typography gutterBottom variant='h5' className={classes.drawerTitle}>Design New Palette </Typography>
+                    <div className={classes.drawerButtons}>
+                        <Button
+                            variant='contained'
+                            color='secondary'
+                            onClick={clearColors}
+                            className={classes.button}
+                        >Clear</Button>
+                        <Button
+                            variant='contained'
+                            color='primary'
+                            onClick={addRandomColor}
+                            disabled={isPaletteFull}
+                            className={classes.button}
+                            style={{ background: isPaletteFull ? 'grey' : null }}
+                        >Random Color</Button>
+                    </div>
+                    <ColorPickerForm
+                        isPaletteFull={isPaletteFull}
+                        colors={colors}
+                        addColor={addColor}
+                    />
                 </div>
-                <ColorPickerForm
-                    isPaletteFull={isPaletteFull}
-                    colors={colors}
-                    addColor={addColor}
-                />
-
             </Drawer>
             <main
                 className={clsx(classes.content, {
