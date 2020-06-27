@@ -5,11 +5,15 @@ import {
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { Add as AddIcon } from '@material-ui/icons';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import useStyles from '../Styles/PaletteFormNav';
 import PaletteModal from './PaletteModal';
 
 const PaletteFormNav = ({ open, palettes, handleDrawerOpen, saveNewPalette }) => {
+    const [isShowing, setIsShowing] = useState(true);
+    const handleClickOpen = () => {
+        console.log(isShowing)
+        setIsShowing(isShowing => !isShowing);
+    }
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -35,19 +39,25 @@ const PaletteFormNav = ({ open, palettes, handleDrawerOpen, saveNewPalette }) =>
                     </Link>
                 </Toolbar>
                 <div className={classes.navBtns}>
-                    <PaletteModal
-                        palettes={palettes}
-                        saveNewPalette={saveNewPalette}
-                    />
-
                     <Link to='/'>
                         <Button
+                            className={classes.goButtons}
                             variant='contained'
                             color='secondary'
                         >Go Back</Button>
                     </Link>
+                    <Button
+                        className={classes.goButtons}
+                        variant='contained' color='primary' onClick={handleClickOpen}>
+                        Save
+                    </Button>
                 </div>
             </AppBar>
+            {isShowing && (<PaletteModal
+                palettes={palettes}
+                saveNewPalette={saveNewPalette}
+            />)}
+
         </div>
     );
 }

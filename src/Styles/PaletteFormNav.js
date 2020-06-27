@@ -39,6 +39,17 @@ const useStyles = makeStyles((theme) => ({
     addIcon: {
         color: 'black'
     },
+    navBtns: {
+        display: 'flex',
+        alignItems: 'center',
+        marginRight: '1rem',
+        justifyContent: 'space-between'
+    },
+    goButtons: {
+        margin: '0 0.5rem',
+        fontFamily: 'Roboto Mono',
+        textTransform: 'none'
+    }
 }));
 
 export default useStyles;
