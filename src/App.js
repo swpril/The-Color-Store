@@ -8,13 +8,21 @@ import { generatePalette } from './helpers/ColorHelper';
 import PaletteList from './Components/PaletteList';
 
 const App = () => {
-
-  const [palettes, setPalettes] = useState(seedColors);
-  const savePalette = (newPalette) => {
-    setPalettes([...palettes, newPalette]);
-  }
+  const savedPalettes = JSON.parse(localStorage.getItem('palettes'));
+  const [palettes, setPalettes] = useState(savedPalettes || seedColors);
+  const [flag, setFlag] = useState(false);
   const findPalette = (id) => {
     return palettes.find((palette) => { return palette.id === id })
+  }
+  const savePalette = (newPalette) => {
+    setPalettes([...palettes, newPalette]);
+    setFlag(true);
+  }
+  if (flag) {
+    (function setLocal() {
+      localStorage.setItem('palettes', JSON.stringify(palettes));
+    })();
+    setFlag(false);
   }
   return (
     <div>
