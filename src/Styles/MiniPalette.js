@@ -4,12 +4,28 @@ const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: 'white',
         borderRadius: theme.spacing(1),
-        padding: ".5rem",
+        padding: '.5rem',
         position: 'relative',
         overflow: 'hidden',
-        "&:hover": {
-            cursor: 'pointer'
+        cursor: 'pointer',
+        '&:hover svg': {
+            opacity: 1
         }
+    },
+    delete: {
+
+    },
+    deleteIcon: {
+        color: 'white',
+        backgroundColor: 'red',
+        height: theme.spacing(2.5),
+        width: theme.spacing(2.5),
+        right: 0,
+        top: 0,
+        position: 'absolute',
+        zIndex: 10,
+        padding: theme.spacing(1),
+        opacity: 0,
     },
     colors: {
         backgroundColor: '#DAE1E4',

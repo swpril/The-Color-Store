@@ -1,4 +1,5 @@
 import React from 'react';
+import { Delete as DeleteIcon } from '@material-ui/icons';
 import useStyles from '../Styles/MiniPalette';
 
 const MiniPalette = (props) => {
@@ -10,6 +11,9 @@ const MiniPalette = (props) => {
     ))
     return (
         <div className={classes.root} onClick={props.handleClick}>
+            <div className={classes.delete}>
+                <DeleteIcon className={classes.deleteIcon} style={{ transition: 'all 0.4s ease-in-out' }} />
+            </div>
             <div className={classes.colors}>
                 {miniColorBoxes}
             </div>
