@@ -13,7 +13,7 @@ const PaletteList = (props) => {
         <div className={classes.root}>
             <div className={classes.container}>
                 <nav className={classes.nav}>
-                    <h1>React Colors </h1>
+                    <h1 className={classes.title}>React Colors </h1>
                     <Link to='/palette/new' className={classes.link}>Create Palette</Link>
                 </nav>
                 <div className={classes.palettes}>
