@@ -19,11 +19,11 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.between('sm', 959)]: {
             width: '50%',
-            height: props => props.showingFullPalette ? ' 10%' : '50%',
+            height: props => props.showingFullPalette ? ' 10%' : '20%',
         },
         [theme.breakpoints.between(961, 1279)]: {
             width: '25%',
-            height: props => props.showingFullPalette ? ' 20%' : '50%',
+            height: props => props.showingFullPalette ? ' 20%' : '33.33%',
         }
 
     },

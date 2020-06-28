@@ -38,6 +38,18 @@ const useStyles = makeStyles((theme) => ({
             textTransform: 'uppercase',
             border: 'none',
             cursor: 'pointer',
+        },
+        [theme.breakpoints.down('xs')]: {
+            width: '100%',
+            height: '10%',
+        },
+        [theme.breakpoints.between('sm', 959)]: {
+            width: '50%',
+            height: '20%',
+        },
+        [theme.breakpoints.between(961, 1279)]: {
+            width: '25%',
+            height: '33.33%',
         }
     }
 }));
