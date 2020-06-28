@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 import chroma from 'chroma-js';
-const useStyles = makeStyles(() => ({
+
+const useStyles = makeStyles((theme) => ({
     colorBox: {
         width: '20%',
         height: props => props.showingFullPalette ? '25%' : '50%',
@@ -10,7 +11,21 @@ const useStyles = makeStyles(() => ({
         marginBottom: '-4px',
         '&:hover button': {
             opacity: 1
+        },
+
+        [theme.breakpoints.down('xs')]: {
+            width: '100%',
+            height: props => props.showingFullPalette ? ' 5%' : '10%',
+        },
+        [theme.breakpoints.between('sm', 959)]: {
+            width: '50%',
+            height: props => props.showingFullPalette ? ' 10%' : '50%',
+        },
+        [theme.breakpoints.between(961, 1279)]: {
+            width: '25%',
+            height: props => props.showingFullPalette ? ' 20%' : '50%',
         }
+
     },
     copyText: {
         color: props => chroma(props.background).luminance() >= 0.5 ? 'black' : 'white'
