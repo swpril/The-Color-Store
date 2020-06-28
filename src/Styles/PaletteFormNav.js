@@ -3,7 +3,7 @@ import { drawerWidth } from '../constants/constants';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: 'flex'
+        display: 'flex',
     },
     appBar: {
         backgroundColor: '#ECEFF1',
@@ -16,11 +16,11 @@ const useStyles = makeStyles((theme) => ({
             color: 'black',
             fontFamily: 'Roboto Mono',
             fontSize: theme.spacing(2),
-            fontWeight: 'bold'
+            fontWeight: 'bold',
         },
         flexDirection: 'row',
         justifyContent: 'space-between',
-        height: theme.spacing(8)
+        height: theme.spacing(8),
     },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
@@ -43,12 +43,19 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         marginRight: '1rem',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        [theme.breakpoints.down(599)]: {
+            marginRight: '.5rem',
+        }
     },
     goButtons: {
         margin: '0 0.5rem',
         fontFamily: 'Roboto Mono',
-        textTransform: 'none'
+        textTransform: 'none',
+        [theme.breakpoints.down(599)]: {
+            fontSize: theme.spacing(1.25),
+            margin: '0 0.25rem'
+        }
     }
 }));
 

@@ -12,6 +12,18 @@ const useStyles = makeStyles((theme) => ({
         '&:hover svg': {
             color: 'white',
             transform: 'scale(1.2)'
+        },
+        [theme.breakpoints.down(959)]: {
+            height: '20%',
+            width: '25%'
+        },
+        [theme.breakpoints.down(599)]: {
+            height: '10%',
+            width: '50%'
+        },
+        [theme.breakpoints.down('xs')]: {
+            width: '100%',
+            height: '5%'
         }
     },
     boxContent: {

@@ -119,12 +119,18 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: 0,
         padding: '1rem',
         fontSize: '2rem',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '1.5rem'
+        }
     },
     p: {
         color: props => chroma(props.background).luminance() >= 0.5 ? 'black' : 'white',
         fontWeight: 100,
         fontSize: '2rem',
         textTransform: 'uppercase',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '1rem'
+        }
     }
 }));
 

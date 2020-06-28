@@ -20,7 +20,13 @@ const useStyles = makeStyles((theme) => ({
         '& a': {
             textDecoration: 'none',
             color: 'black',
-        }
+        },
+        [theme.breakpoints.down('xs')]: {
+            display: 'none '
+        },
+        [theme.breakpoints.between('sm', 959)]: {
+            fontSize: theme.spacing(1.5)
+        },
     },
 
     slider: {
@@ -35,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
             outline: 'none',
             border: '2px solid green',
             boxShadow: 'none',
+        },
+        [theme.breakpoints.down(959)]: {
+            width: '140px'
         }
     },
     selectContainer: {
