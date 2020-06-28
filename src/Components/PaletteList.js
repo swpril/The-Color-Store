@@ -19,7 +19,7 @@ const PaletteList = (props) => {
                 <div className={classes.palettes}>
                     {props.palettes.map((palette) => {
                         return (
-                            <MiniPalette key={palette.id} {...palette} handleClick={() => { handleClick(palette.id) }} />
+                            <MiniPalette id={palette.id} deletePalette={props.deletePalette} key={palette.id} {...palette} handleClick={() => { handleClick(palette.id) }} />
                         )
                     })}
                 </div>

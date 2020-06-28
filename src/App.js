@@ -19,10 +19,16 @@ const App = () => {
     setFlag(true);
   }
   if (flag) {
-    (function setLocal() {
+    (function syncLocalStorage() {
       localStorage.setItem('palettes', JSON.stringify(palettes));
-    })();
+    })()
     setFlag(false);
+  }
+
+  const deletePalette = (id) => {
+    const plx = palettes.filter((p) => p.id !== id)
+    setPalettes(palettes => plx);
+    setFlag(true);
   }
   return (
     <div>
@@ -31,7 +37,7 @@ const App = () => {
         <Route
           exact
           path='/'
-          render={(routeProps) => <PaletteList palettes={palettes} {...routeProps} />} />
+          render={(routeProps) => <PaletteList palettes={palettes} {...routeProps} deletePalette={deletePalette} />} />
         <Route
           exact
           path='/palette/:id'
