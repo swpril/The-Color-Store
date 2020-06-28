@@ -40,13 +40,13 @@ const NewPaletteFrom = ({ savePalette, palettes, maxColors = 20 }) => {
         setColors([]);
     };
 
-    const saveNewPalette = (newPaletteName) => {
+    const saveNewPalette = (newPaletteName, emoji) => {
         const name = newPaletteName;
         const newPalette = {
             colors: colors,
             paletteName: name,
             id: name.toLowerCase().replace(/ /g, '-'),
-            emoji: '😆'
+            emoji: emoji
         }
         savePalette(newPalette);
         history.push('/');

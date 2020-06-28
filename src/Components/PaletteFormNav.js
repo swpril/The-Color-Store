@@ -11,7 +11,6 @@ import PaletteModal from './PaletteModal';
 const PaletteFormNav = ({ open, palettes, handleDrawerOpen, saveNewPalette }) => {
     const [isShowing, setIsShowing] = useState(false);
     const handleClickOpen = () => {
-        console.log(isShowing)
         setIsShowing(true);
     }
     const handleClose = () => {

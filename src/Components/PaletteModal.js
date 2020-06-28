@@ -17,21 +17,36 @@ const PalleteModal = ({ isShowing, palettes, saveNewPalette, handleClose }) => {
     }, [palettes]);
 
     const [open] = useState(isShowing);
+    const [stage, setStage] = useState('form');
     const [newPaletteName, setNewPaletteName] = useState('');
+
     const handlePaletteName = (e) => {
         setNewPaletteName(e.target.value)
     };
 
+    const showEmoji = () => {
+        setStage('emoji')
+    };
+
+    const savePalette = (em) => {
+        saveNewPalette(newPaletteName, em.native)
+    };
+
     return (
         <div>
-            <Dialog open={open} onClose={handleClose} aria-labelledby='form-dialog-title'>
+            <Dialog open={open && stage === 'emoji'} onClose={handleClose} aria-labelledby='emoji-dialog-title'>
+                <DialogTitle id='emoji-dialog-title' >
+                    Pick emoji for palette
+                    </DialogTitle>
+                <Picker onSelect={savePalette} />
+            </Dialog>
+            <Dialog open={open && stage === 'form'} onClose={handleClose} aria-labelledby='form-dialog-title'>
                 <DialogTitle id='form-dialog-title'>Save Palette</DialogTitle>
-                <ValidatorForm onSubmit={() => { saveNewPalette(newPaletteName) }}>
+                <ValidatorForm onSubmit={showEmoji}>
                     <DialogContent>
                         <DialogContentText>
                             Please enter a unique name for your beautiful palette!
                         </DialogContentText>
-                        <Picker />
                         <TextValidator
                             fullWidth
                             label='Palette Name'
