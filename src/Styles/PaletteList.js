@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'flex-start',
         flexDirection: 'column',
         flexWrap: 'wrap',
+        [theme.breakpoints.up(961)]: {
+            width: '75%'
+        }
     },
     nav: {
         display: 'flex',
@@ -32,7 +35,13 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         display: 'grid',
         gridTemplateColumns: 'repeat(3,30%)',
-        gridGap: '5%'
+        gridGap: '5%',
+        [theme.breakpoints.between('sm', 959)]: {
+            gridTemplateColumns: 'repeat(2,50%)',
+        },
+        [theme.breakpoints.down('599')]: {
+            gridTemplateColumns: 'repeat(1,100%)',
+        }
     }
 }));
 
