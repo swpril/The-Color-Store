@@ -5,8 +5,10 @@ import {
     DialogContentText, DialogTitle
 } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { Picker } from 'emoji-mart';
+import 'emoji-mart/css/emoji-mart.css';
 
-const PalleteModal = ({ palettes, saveNewPalette }) => {
+const PalleteModal = ({ isShowing, palettes, saveNewPalette, handleClose }) => {
     useEffect(() => {
 
         ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
@@ -14,14 +16,10 @@ const PalleteModal = ({ palettes, saveNewPalette }) => {
         });
     }, [palettes]);
 
-    const [open, setOpen] = useState(false);
+    const [open] = useState(isShowing);
     const [newPaletteName, setNewPaletteName] = useState('');
     const handlePaletteName = (e) => {
         setNewPaletteName(e.target.value)
-    };
-
-    const handleClose = () => {
-        setOpen(false);
     };
 
     return (
@@ -33,6 +31,7 @@ const PalleteModal = ({ palettes, saveNewPalette }) => {
                         <DialogContentText>
                             Please enter a unique name for your beautiful palette!
                         </DialogContentText>
+                        <Picker />
                         <TextValidator
                             fullWidth
                             label='Palette Name'
