@@ -1,6 +1,15 @@
 import { makeStyles } from '@material-ui/core';
 import bg from '../Components/images/bg.svg'
 const useStyles = makeStyles((theme) => ({
+    '@global': {
+        '.fade-exit': {
+            opacity: 1
+        },
+        '.fade-exit-active': {
+            opacity: 0,
+            transition: 'opacity 500ms ease-out'
+        }
+    },
     root: {
         backgroundColor: '#00b7ff',
         height: '100vh',
@@ -14,11 +23,12 @@ const useStyles = makeStyles((theme) => ({
     container: {
         width: '50%',
         display: 'flex',
+        height: '100vh',
         alignItems: 'flex-start',
         flexDirection: 'column',
         flexWrap: 'wrap',
-        [theme.breakpoints.up(1281)]: {
-            width: '70%'
+        [theme.breakpoints.up(1400)]: {
+            width: '100%'
         }
     },
     nav: {
