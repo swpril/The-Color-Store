@@ -29,7 +29,8 @@ const PalleteModal = ({ isShowing, palettes, saveNewPalette, handleClose }) => {
     };
 
     const savePalette = (em) => {
-        saveNewPalette(newPaletteName, em.native)
+        saveNewPalette(newPaletteName, em.native);
+        setStage('');
     };
 
     return (
