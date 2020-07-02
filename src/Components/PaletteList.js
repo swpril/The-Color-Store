@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import {
-    Dialog, DialogTitle
-    , List, ListItem, ListItemAvatar, ListItemText, Avatar
+    Dialog, DialogTitle,
+    List, ListItem, ListItemAvatar,
+    ListItemText, Avatar
 } from '@material-ui/core';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { Check as CheckIcon, Close as CloseIcon } from '@material-ui/icons';
