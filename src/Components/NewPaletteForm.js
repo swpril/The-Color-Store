@@ -14,11 +14,12 @@ import DraggableColorList from './DraggableColorList';
 import ColorPickerForm from './ColorPickerForm';
 import PaletteFormNav from './PaletteFormNav';
 import useStyles from '../Styles/NewPaletteForm';
+import seedColors from '../seedColors';
 
 const NewPaletteFrom = ({ savePalette, palettes, maxColors = 20 }) => {
     const classes = useStyles();
     const [open, setOpen] = useState(true);
-    const [colors, setColors] = useState(palettes[0].colors);
+    const [colors, setColors] = useState(seedColors[0].colors);
     const history = useHistory();
 
     const isPaletteFull = maxColors === colors.length;
@@ -53,7 +54,7 @@ const NewPaletteFrom = ({ savePalette, palettes, maxColors = 20 }) => {
     };
 
     const addRandomColor = () => {
-        const allColors = palettes.map((p) => p.colors).flat();
+        const allColors = seedColors.map((p) => p.colors).flat();
         const index = Math.floor(Math.random() * allColors.length);
         const randomColor = allColors[index];
         setColors([...colors, randomColor])

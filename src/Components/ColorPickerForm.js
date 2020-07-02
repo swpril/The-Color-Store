@@ -40,7 +40,7 @@ const ColorPickerForm = ({ isPaletteFull, colors, addColor }) => {
     return (
         <div className={classes.root}>
             <ChromePicker color={currentColor} onChangeComplete={updateColor} className={classes.picker} />
-            <ValidatorForm onSubmit={handleSubmit}>
+            <ValidatorForm onSubmit={handleSubmit} instantValidate={false}>
                 <TextValidator
                     value={newColorName}
                     name='newColorName'

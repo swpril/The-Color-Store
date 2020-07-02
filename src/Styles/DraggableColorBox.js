@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core';
-
+import chroma from 'chroma-js';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '20%',
@@ -30,8 +30,9 @@ const useStyles = makeStyles((theme) => ({
         position: 'absolute',
         padding: '10',
         width: '100%',
+
         left: 0,
-        color: 'rgba(0,0,0,0.5)',
+        color: props => chroma(props.color).luminance() <= 0.8 ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
         bottom: 0,
         fontSize: '12px',
         textTransform: 'uppercase',
