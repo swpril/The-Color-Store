@@ -54,9 +54,15 @@ const NewPaletteFrom = ({ savePalette, palettes, maxColors = 20 }) => {
     };
 
     const addRandomColor = () => {
-        const allColors = seedColors.map((p) => p.colors).flat();
-        const index = Math.floor(Math.random() * allColors.length);
-        const randomColor = allColors[index];
+        let allColors = seedColors.map((p) => p.colors).flat();
+        let index;
+        let randomColor;
+        let isDuplicate = true;
+        while (isDuplicate) {
+            index = Math.floor(Math.random() * allColors.length);
+            randomColor = allColors[index];
+            isDuplicate = colors.some(color => color.name === randomColor.name);
+        }
         setColors([...colors, randomColor])
 
     };
