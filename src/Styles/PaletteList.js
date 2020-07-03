@@ -11,25 +11,26 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     root: {
-        backgroundColor: '#00b7ff',
         height: '100vh',
         display: 'flex',
+        backgroundColor: 'blue',
         alignItems: 'flex-start ',
         justifyContent: 'center ',
-        overflowY: 'scroll',
         /* background by SVGBackgrounds.com */
-        backgroundImage: `url(${bg})`
+        backgroundImage: `url(${bg})`,
+        overflow: 'scroll',
     },
     container: {
-        width: '50%',
-        display: 'flex',
-        height: '100vh',
-        alignItems: 'flex-start',
-        flexDirection: 'column',
-        flexWrap: 'wrap',
-        [theme.breakpoints.up(1400)]: {
-            width: '100%'
-        }
+        // display: 'flex',
+        // border: '2px solid red',
+        // height: '100vh',
+        // width: '50%',
+        // alignItems: 'flex-start',
+        // flexDirection: 'column',
+        // flexWrap: 'wrap',
+        // [theme.breakpoints.up(1400)]: {
+        //     width: '50%'
+        // }
     },
     nav: {
         display: 'flex',
